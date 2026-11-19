@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Run Database</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+        button:hover { background-color: #0056b3; }
+        .error { color: red; font-weight: bold; margin-top: 20px; }
+        .result-box { background: #1e1e1e; color: #00ff00; padding: 15px; border-radius: 5px; margin-top: 15px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+
+    <h1>Router Automation - Run Database</h1>
+
+    <!-- Sends the POST request to api.py when clicked -->
+    <form method="POST">
+        <button type="submit">Run Router Commands</button>
+    </form>
+
+    <!-- Displays any connection errors -->
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <!-- Displays the output for each command -->
+    {% if results %}
+        <h2>Command Outputs:</h2>
+        {% for cmd, output in results.items() %}
+            <h3>{{ cmd }}</h3>
+            <pre class="result-box">{{ output }}</pre>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
